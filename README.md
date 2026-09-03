@@ -7,3 +7,4 @@ Improved user profile
 Added more information for events
 separated the ERD for better viewing
 explanations added and extended in the documentation
+each database table has an explanation
