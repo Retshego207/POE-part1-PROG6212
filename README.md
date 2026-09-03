@@ -9,3 +9,4 @@ separated the ERD for better viewing
 explanations added and extended in the documentation
 each database table has an explanation
 Made sure the inserted database is correct
+tables show clear information of the database
