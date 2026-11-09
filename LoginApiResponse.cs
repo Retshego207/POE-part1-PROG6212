@@ -1,0 +1,12 @@
+﻿namespace RaceDayMVC.Models
+{
+    public class LoginApiResponse
+    {
+        public int userID { get; set; }
+        public string firstName { get; set; }
+        public string surName { get; set; }
+        public string email { get; set; }
+        public string  role { get; set; }
+
+    }
+}
