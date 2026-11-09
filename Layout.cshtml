@@ -1,0 +1,49 @@
+﻿@if (Context.Session.GetInt32("UserID") != null)
+{
+    @if (Context.Session.GetString("Role") == "Organiser")
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               asp-controller="Organiser"
+               asp-action="Dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               asp-controller="Organiser"
+               asp-action="Events">Manage Events</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               asp-controller="Organiser"
+               asp-action="Categories">Categories</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               asp-controller="Organiser"
+               asp-action="Enrolments">Enrolments</a>
+        </li>
+    }
+    else if (Context.Session.GetString("Role") == "Participant")
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               asp-controller="Participant"
+               asp-action="Dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               asp-controller="Participant"
+               asp-action="Events">Events</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               asp-controller="Participant"
+               asp-action="MyEnrolments">My Enrolments</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               asp-controller="Participant"
+               asp-action="MyResults">My Results</a>
+        </li>
+    }
+}
