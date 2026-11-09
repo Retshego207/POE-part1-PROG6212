@@ -1,0 +1,72 @@
+﻿@model List<RaceDayMVC.Models.EnrollmentViewModel>
+
+@{
+    ViewData["Title"] = "Enrollment";
+}
+
+<div class="container py-5">
+
+    <h2 class="mb-2">Enrollment</h2>
+
+    <p class="text-muted">
+        Keep track of the events you have joined.
+    </p>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-warning">
+            @ViewBag.Error
+        </div>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Event</th>
+                        <th>Location</th>
+                        <th>Event Date</th>
+                        <th>Enrolment Date</th>
+                        <th>Race Number</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.eventName</td>
+                            <td>@item.location</td>
+                            <td>@item.eventDate.ToString("dd MMM yyyy")</td>
+                            <td>@item.enrollmentDate.ToString("dd MMM yyyy")</td>
+                            <td>@(item.raceNumber?.ToString() ?? "Not assigned")</td>
+                            <td>
+                                <span class="badge bg-info">
+                                    @item.status
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            You haven't enrolled in any events yet.
+        </div>
+    }
+
+    <a asp-controller="Participant"
+       asp-action="Events"
+       class="btn btn-primary mt-3">
+        Browse Events
+    </a>
+
+</div>

@@ -1,0 +1,63 @@
+﻿@model RaceDayMVC.Models.ParticipantProfileViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container py-5">
+    <h2>My Participant Profile</h2>
+    <p class="text-muted">Manage your personal participant information.</p>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-warning">@ViewBag.Error</div>
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <form asp-controller="Participant"
+          asp-action="UpdateProfile"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="profileID" />
+
+        <div class="mb-3">
+            <label asp-for="dateOfBirth" class="form-label">Date of Birth</label>
+            <input asp-for="dateOfBirth" type="date" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="gender" class="form-label">Gender</label>
+            <select asp-for="gender" class="form-select">
+                <option value="">Select Gender</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="emergencyContact" class="form-label">Emergency Contact</label>
+            <input asp-for="emergencyContact" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="clubName" class="form-label">Club Name</label>
+            <input asp-for="clubName" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Profile
+        </button>
+    </form>
+</div>

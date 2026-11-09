@@ -1,0 +1,72 @@
+﻿@model RaceDayMVC.Models.EventViewModel
+
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<div class="container py-5">
+
+    <a asp-controller="Participant"
+       asp-action="Events"
+       class="btn btn-outline-secondary mb-4">
+        Back to Events
+    </a>
+
+    <div class="card shadow">
+        <div class="card-body p-4">
+
+            <h2 class="mb-3">@Model.eventName</h2>
+
+            <p>@Model.description</p>
+
+            <hr />
+
+            <p>
+                <strong>Event Date:</strong>
+                @Model.eventDate.ToString("dd MMMM yyyy")
+            </p>
+
+            <p>
+                <strong>Start Time:</strong>
+                @Model.startTime
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                @Model.location
+            </p>
+
+            <p>
+                <strong>Distance:</strong>
+                @Model.distance
+            </p>
+
+            <p>
+                <strong>Entry Fee:</strong>
+                R @Model.entryFee
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                @Model.status
+            </p>
+
+            <button class="btn btn-primary" disabled>
+                <form asp-controller="Participant"
+                asp-action="Enrol"
+                method="post">
+            @Html.AntiForgeryToken()
+
+            <input type="hidden"
+                   name="eventId"
+                   value="@Model.eventID" />
+
+                   <button type="submit" class="btn btn-primary">
+                       Enrol in This Event
+                   </button>
+            </form>
+            </button>
+
+        </div>
+    </div>
+</div>
