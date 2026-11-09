@@ -1,0 +1,36 @@
+﻿@model RaceDayMVC.Models.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<div class="container py-5">
+    <h2>Edit Category</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form asp-action="EditCategory"
+          asp-route-id="@Model.categoryID"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="categoryID" />
+
+        <div class="mb-3">
+            <label asp-for="categoryName" class="form-label">Category Name</label>
+            <input asp-for="categoryName" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="description" class="form-label">Description</label>
+            <textarea asp-for="description" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Categories" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

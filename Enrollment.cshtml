@@ -1,0 +1,80 @@
+﻿@model List<RaceDayMVC.Models.EnrollmentViewModel>
+
+@{
+    ViewData["Title"] = "Manage Enrollment";
+}
+
+<div class="container py-5">
+    <h2>Manage Participant Enrollment</h2>
+
+    <p class="text-muted">
+        View participants who have registered for RaceDay events.
+    </p>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-warning">
+            @ViewBag.Error
+        </div>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Event</th>
+                        <th>Location</th>
+                        <th>Event Date</th>
+                        <th>Participant ID</th>
+                        <th>Enrollment Date</th>
+                        <th>Race Number</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.eventName</td>
+                            <td>@item.location</td>
+
+                            <td>
+                                @item.eventDate.ToString("dd MMM yyyy")
+                            </td>
+
+                            <td>@item.userID</td>
+
+                            <td>
+                                @item.enrollmentDate.ToString("dd MMM yyyy")
+                            </td>
+
+                            <td>
+                                @(item.raceNumber?.ToString() ?? "Not assigned")
+                            </td>
+
+                            <td>@item.status</td>
+                            <td>
+                                <a asp-controller="Organiser"
+                                asp-action="EnterResult"
+                                asp-route-ernrollementId="@item.enrollmentID"
+                                class="btn btn-sm btn-primary">
+                                Enter Result
+                            </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            No participant enrollment are available.
+        </div>
+    }
+</div>
